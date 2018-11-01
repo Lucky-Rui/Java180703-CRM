@@ -35,12 +35,22 @@
 	</bean>
 	
 	<!-- 配置Converter转换器 转换工厂 -->
-	<bean id="consersionServiceFactoryBean" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
-	    <!--配置多个转换器  -->
-	    <property name="converters">
-	        <list>
-	           <bean class="com.situ.mall.conversion.DateConverter"/>
-	        </list>
-	    </property>
+	<bean id="consersionServiceFactoryBean"
+		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+		<!--配置多个转换器 -->
+		<property name="converters">
+			<list>
+				<bean class="com.situ.crm.conversion.DateConverter" />
+			</list>
+		</property>
 	</bean>
+	
+	<!--配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <mvc:exclude-mapping path="/login.action"/>
+            <bean class="com.situ.crm.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

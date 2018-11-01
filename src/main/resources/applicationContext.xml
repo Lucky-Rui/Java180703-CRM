@@ -18,9 +18,11 @@
 	<context:property-placeholder location="classpath:db.properties"/>
 	
 	<!-- 配置扫描Service -->
-	<context:component-scan base-package="com.situ.mall.service"/>
+	<context:component-scan base-package="com.situ.crm.service"/>
+	<context:component-scan base-package="com.situ.crm.util"/>
 	
 	<!-- ******************数据库相关配置************************ -->
+	<!-- 数据库相关配置 -->
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driver}"/>
@@ -44,10 +46,11 @@
 		的id就是mapper的类名(首字母小写)-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 配置Mapper扫描包 -->
-		<property name="basePackage" value="com.situ.mall.mapper"/>
+		<property name="basePackage" value="com.situ.crm.mapper"/>
 	</bean>
 	
 	<!-- ********************事物相关配置********************** -->
+	<!-- 事物管理器 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<!-- 数据源, 事物的操作是和数据库相关的，因为中间出现异常，
 		 需要数据库回滚数据。-->
@@ -68,6 +71,7 @@
 			<tx:method name="select*" propagation="SUPPORTS" read-only="true" />
 			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
 			<tx:method name="query*" propagation="SUPPORTS" read-only="true" />
+			
 		</tx:attributes>
 	</tx:advice>
 	<!-- 切面 -->
