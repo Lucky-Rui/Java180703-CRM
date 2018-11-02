@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/common/taglibs.jsp" %>
+<%@taglib prefix="myFn" uri="http://situ.com/rbac" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -53,120 +54,136 @@
     <div class="left-nav">
       <div id="side-nav">
         <ul id="nav">
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6b8;</i>
-                    <cite>商品管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="${ctx}/">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>商品列表</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6b8;</i>
-                    <cite>营销管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="${ctx}/">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>营销列表</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6b8;</i>
-                    <cite>客户管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="${ctx}/">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>客户列表</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe723;</i>
-                    <cite>订单管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="${ctx}/">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>订单列表</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6ce;</i>
-                    <cite>统计图表</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="${ctx}/">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>商品数量统计</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="${ctx}/">
-                            <i class="">&#xe6a7;</i>
-                            <cite>商品销量统计</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="${ctx}/">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限管理</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe726;</i>
-                    <cite>用户&权限管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="admin-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户管理</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="admin-role.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>角色管理</cite>
-                        </a>
-                    </li >
-                    <li>
-                        <a _href="admin-rule.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限管理</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
+        	<c:if test="${myFn:checkPermission('spgl:/product/getPrductPage.action')}">
+	            <li>
+	                <a href="javascript:;">
+	                    <i class="iconfont">&#xe6b8;</i>
+	                    <cite>商品管理</cite>
+	                    <i class="iconfont nav_right">&#xe697;</i>
+	                </a>
+	                <ul class="sub-menu">
+	                    <li>
+	                        <a _href="${ctx}/product/getProductPage.action">
+	                            <i class="iconfont">&#xe6a7;</i>
+	                            <cite>商品列表</cite>
+	                        </a>
+	                    </li >
+	                </ul>
+	            </li>
+            </c:if>
+            <c:if test="${myFn:checkPermission('yxgl:/saleChance/getSaleChancePage.action')}">
+	            <li>
+	                <a href="javascript:;">
+	                    <i class="iconfont">&#xe6b8;</i>
+	                    <cite>营销管理</cite>
+	                    <i class="iconfont nav_right">&#xe697;</i>
+	                </a>
+	                <ul class="sub-menu">
+	                    <li>
+	                        <a _href="${ctx}/saleChance/getSaleChancePage.action">
+	                            <i class="iconfont">&#xe6a7;</i>
+	                            <cite>营销列表</cite>
+	                        </a>
+	                    </li >
+	                </ul>
+	            </li>
+            </c:if>
+            <c:if test="${myFn:checkPermission('ddgl:/customer/getCustomerPage.action')}">
+	            <li>
+	                <a href="javascript:;">
+	                    <i class="iconfont">&#xe6b8;</i>
+	                    <cite>客户管理</cite>
+	                    <i class="iconfont nav_right">&#xe697;</i>
+	                </a>
+	                <ul class="sub-menu">
+	                    <li>
+	                        <a _href="">
+	                            <i class="iconfont">&#xe6a7;</i>
+	                            <cite>客户列表</cite>
+	                        </a>
+	                    </li >
+	                </ul>
+	            </li>
+            </c:if>
+            <c:if test="${myFn:checkPermission('ddgl:/order/getOrderPage.action')}">
+	            <li>
+	                <a href="javascript:;">
+	                    <i class="iconfont">&#xe723;</i>
+	                    <cite>订单管理</cite>
+	                    <i class="iconfont nav_right">&#xe697;</i>
+	                </a>
+	                <ul class="sub-menu">
+	                    <li>
+	                        <a _href="${ctx}/order/getOrderPage.action">
+	                            <i class="iconfont">&#xe6a7;</i>
+	                            <cite>订单列表</cite>
+	                        </a>
+	                    </li >
+	                </ul>
+	            </li>
+            </c:if>
+            <c:if test="${myFn:checkPermission('tjtb')}">
+	            <li>
+	                <a href="javascript:;">
+	                    <i class="iconfont">&#xe6ce;</i>
+	                    <cite>统计图表</cite>
+	                    <i class="iconfont nav_right">&#xe697;</i>
+	                </a>
+	                <ul class="sub-menu">
+	                	<c:if test="${myFn:checkPermission('tjtb:/charts/getProductAmount.action')}">
+		                    <li>
+		                        <a _href="">
+		                            <i class="iconfont">&#xe6a7;</i>
+		                            <cite>商品数量统计</cite>
+		                        </a>
+		                    </li >
+	                    </c:if>
+	                    <c:if test="${myFn:checkPermission('tjtb:/charts/getProductSale.action')}">
+		                    <li>
+		                        <a _href="">
+		                            <i class="iconfont">&#xe6a7;</i>
+		                            <cite>商品销量统计</cite>
+		                        </a>
+		                    </li>
+	                    </c:if>
+	                </ul>
+	            </li>
+            </c:if>
+            <c:if test="${myFn:checkPermission('yhqx')}">
+	            <li>
+	                <a href="javascript:;">
+	                    <i class="iconfont">&#xe726;</i>
+	                    <cite>用户&权限管理</cite>
+	                    <i class="iconfont nav_right">&#xe697;</i>
+	                </a>
+	                <ul class="sub-menu">
+	                	<c:if test="${myFn:checkPermission('yhqx:/user/getUserPage.action')}">
+		                    <li>
+		                        <a _href="${ctx}/user/getUserPage.action">
+		                            <i class="iconfont">&#xe6a7;</i>
+		                            <cite>用户管理</cite>
+		                        </a>
+		                    </li >
+	                    </c:if>
+	                    <c:if test="${myFn:checkPermission('yhqx:/user/getRolePage.action')}">
+		                    <li>
+		                        <a _href="${ctx}/role/getRolePage.action">
+		                            <i class="iconfont">&#xe6a7;</i>
+		                            <cite>角色管理</cite>
+		                        </a>
+		                    </li >
+	                    </c:if>
+	                    <c:if test="${myFn:checkPermission('yhqx:/user/getPermissionPage.action')}">
+		                    <li>
+		                        <a _href="${ctx}/permission/getPermissionPage.action">
+		                            <i class="iconfont">&#xe6a7;</i>
+		                            <cite>权限管理</cite>
+		                        </a>
+		                    </li >
+	                    </c:if>
+	                </ul>
+	            </li>
+            </c:if>
         </ul>
       </div>
     </div>

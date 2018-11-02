@@ -12,8 +12,8 @@
     <meta http-equiv="Cache-Control" content="no-siteapp" />
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="${ctx}/static/back//css/font.css">
-	<link rel="stylesheet" href="${ctx}/static/back//css/xadmin.css">
+    <link rel="stylesheet" href="${ctx}/static/back/css/font.css">
+	<link rel="stylesheet" href="${ctx}/static/back/css/xadmin.css">
 	
     <script src="${ctx}/static/back/lib/jquery/jquery-3.2.1.min.js"></script>
     <script src="${ctx}/static/back/lib/layui/layui.js" charset="utf-8"></script>
@@ -25,7 +25,7 @@
 <body class="login-bg">
     
     <div class="login">
-        <div class="message">管理登录</div>
+        <div class="message">登录</div>
         <div id="darkbannerwrap"></div>
         
         <form method="post" id="login-form" class="layui-form" >
@@ -47,7 +47,7 @@
 		        data : $("#login-form").serialize(),
 		        success : function(resp) {
 		           if(resp.code == util.SUCCESS) {
-		        	   window.location.href = "${ctx}/indexBack.action";
+		        	   window.location.href = "${ctx}/index.action";
 		           } else {
 		              alert(resp.data);
 		           }

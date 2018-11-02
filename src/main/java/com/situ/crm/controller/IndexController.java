@@ -10,9 +10,4 @@ public class IndexController {
 	public String index() {
 		return "/index";
 	}
-
-	@RequestMapping(value = "/getIndexV1Page")
-	public String getIndexV1Page() {
-		return "/index_v1";
-	}
 }
