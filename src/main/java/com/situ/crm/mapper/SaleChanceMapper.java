@@ -58,4 +58,6 @@ public interface SaleChanceMapper {
 	int deleteAll(String[] idArray);
 
 	List<SaleChance> selectByUserId(Integer id);
+
+	void updateDevResult(Integer saleChanceId);
 }

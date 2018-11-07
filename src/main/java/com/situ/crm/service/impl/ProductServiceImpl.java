@@ -86,4 +86,15 @@ public class ProductServiceImpl implements IProductService {
 	public List<Product> selectAll() {
 		return productMapper.pageList(new Product());
 	}
+
+	@Override
+	public Product findById(Integer id) {
+		return productMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public ServerResponse selectProductCount() {
+		List<Product> list = productMapper.selectProductCount();
+		return ServerResponse.createSuccess("查找成功", list);
+	}
 }

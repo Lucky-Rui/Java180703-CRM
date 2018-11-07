@@ -42,7 +42,7 @@
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
               <dd><a onclick="x_admin_show('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
-              <dd><a href="./login.html">退出</a></dd>
+              <dd><a href="http://www.baidu.com">退出</a></dd>
             </dl>
           </li>
         </ul>
@@ -68,7 +68,7 @@
 	                            <cite>商品列表</cite>
 	                        </a>
 	                    </li >
-	                </ul>
+	                </ul> 
 	            </li>
             </c:if>
             <c:if test="${myFn:checkPermission('yxgl:/saleChance/getSaleChancePage.action')}">
@@ -97,7 +97,7 @@
 	                </a>
 	                <ul class="sub-menu">
 	                    <li>
-	                        <a _href="">
+	                        <a _href="${ctx}/customer/getCustomerPage.action">
 	                            <i class="iconfont">&#xe6a7;</i>
 	                            <cite>客户列表</cite>
 	                        </a>
@@ -130,7 +130,7 @@
 	                    <i class="iconfont nav_right">&#xe697;</i>
 	                </a>
 	                <ul class="sub-menu">
-	                	<c:if test="${myFn:checkPermission('tjtb:/charts/getProductAmount.action')}">
+	                	<c:if test="${myFn:checkPermission('tjtb:/charts/getProductCountPage.action')}">
 		                    <li>
 		                        <a _href="">
 		                            <i class="iconfont">&#xe6a7;</i>

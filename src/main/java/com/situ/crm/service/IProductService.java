@@ -19,4 +19,8 @@ public interface IProductService {
 	ServerResponse update(Product product);
 
 	List<Product> selectAll();
+
+	Product findById(Integer id);
+
+	ServerResponse selectProductCount();
 }

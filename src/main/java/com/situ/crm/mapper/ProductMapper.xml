@@ -172,7 +172,7 @@
   </update>
   
   <!-- 自定义 -->
-  <select id="pageList" parameterType="Product" resultMap="BaseResultMap">
+  <select id="pageList" resultMap="BaseResultMap">
   	select 
     <include refid="Base_Column_List" />
     from product 
@@ -190,4 +190,11 @@
   		#{id}
   	</foreach>
   </delete>
+  
+  <select id="selectProductCount" resultType="ProductCountVO">
+    select 
+    name,stock
+    from product
+  </select>
+  
 </mapper>

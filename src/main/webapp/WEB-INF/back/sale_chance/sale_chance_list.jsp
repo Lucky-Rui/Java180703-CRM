@@ -54,19 +54,23 @@
 	</script>
 	<script type="text/html" id="statusTpl">
 		 {{#  if(d.status == 1){  }}
-		 	           上架
+		 	           已分配
 		 {{#  } else {            }}
-				  下架
+				  未分配
 		 {{#  }					  }}
 	</script>
-	<script type="text/html" id="mainImageTpl">
-		 <img src="{{d.fullUrl}}"/>
+	<script type="text/html" id="devResultTpl">
+		 {{#  if(d.devResult == 0){    }}
+		 	     	未开发
+		 {{#  } else if(d.devResult == 1) {     }}
+					开发中
+		 {{#  }	else if(d.devResult == 2) {		}}
+					开发成功
+		 {{#  }	else if(d.devResult == 3) {		}}
+					开发失败
+		 {{#  }					       }}
 	</script>
 	
-	<script src="${ctx}/static/back/js/jquery.min.js?v=2.1.4"></script>
-	<script src="${ctx}/static/common/mylayer.js"></script>
-	<script src="${ctx}/static/common/util.js"></script>
-	<script src="${ctx}/static/lib/layui/layui.js"></script>
 	<script>
 		layui.use(['table','laydate'], function() {
 			var table = layui.table;
@@ -79,7 +83,7 @@
 			
 			table.render({
 			    elem: '#tableId'
-			    ,url: '${ctx}/saleChance/pageList.action' //数据接口
+			    ,url: '${ctx}/saleChance/pageList.action?user=${user.id}' //数据接口
 			    ,page: true //开启分页
 			    ,id : "layUITableId" //设定容器唯一ID，id值是对表格的数据操作方法上是必要的传递条件，它是表格容器的索引
 			    ,cols: [[ //表头
@@ -90,8 +94,8 @@
 			      ,{field: 'productId', title: '产品id'}
 			      ,{field: 'userId', title: '营销人员id'}
 			      ,{field: 'successRate', title: '成功几率'}
-			      ,{field: 'status', title: '分配状态'}
-			      ,{field: 'devResult', title: '客户开发状态'}
+			      ,{field: 'status', title: '分配状态',templet:"#statusTpl"}
+			      ,{field: 'devResult', title: '客户开发状态',templet:"#devResultTpl"}
 			      ,{fixed:'right', width: 178, toolbar:'#barDemo'}
 			    ]]
 			  });
@@ -102,7 +106,7 @@
 		    var data = obj.data;//获得当前行数据,json格式对象
 		    var layEvent = obj.event;//获得lay-event对应的值
 		    if(layEvent === 'detail'){
-		      layer.msg('ID：'+ data.id + ' 的查看操作');
+		    	 detail(data);
 		    } else if(layEvent === 'del'){
 		      layer.confirm('真的删除行么', function(index){
 		    	$.ajax({
@@ -170,6 +174,18 @@
 				location.href = "${ctx}/saleChance/getAddPage.action";
 			}
 		  };
+		  
+			//开发客户
+			function detail(data){
+				var id = data.id;
+				layer.open({
+					type : 2,
+					title : "开发详情",
+					area : ["1000px","600px"],
+					offset : "1px",
+					content : "${ctx}/cusDevPlan/getCusDevPlanPage.action?id=" + id
+				})
+			}
 		  
 		  $('.demoTable .layui-btn').on('click', function(){
 			   var type = $(this).data('type');

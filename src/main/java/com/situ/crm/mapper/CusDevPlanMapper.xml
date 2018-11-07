@@ -148,4 +148,28 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <!-- 自定义 -->
+  <select id="selectBySaleChanceId" parameterType="Integer" resultMap="BaseResultMap">
+  	SELECT 
+  	<include refid="Base_Column_List"/> 
+  	FROM cus_dev_plan 
+  	WHERE sale_chance_id = #{id}
+  </select>
+  
+  <select id="pageList"  resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from cus_dev_plan 
+    WHERE sale_chance_id = #{id}
+  </select>
+  
+  <delete id="deleteAll">
+  	delete from cus_dev_plan
+  	where id in
+  	<foreach collection="array" item="id" open="(" close=")" separator=",">
+  		#{id}
+  	</foreach>
+  </delete>
+  
 </mapper>

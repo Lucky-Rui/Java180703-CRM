@@ -238,4 +238,10 @@
     from sale_chance 
     where user_id=#{id}
   </select>
+  
+  <update id="updateDevResult" parameterType="int">
+  	UPDATE sale_chance
+	SET dev_result = 1
+	WHERE id = #{id}
+  </update>
 </mapper>

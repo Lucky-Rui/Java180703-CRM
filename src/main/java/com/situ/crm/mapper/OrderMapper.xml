@@ -173,4 +173,27 @@
       product_id = #{productId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <!-- 自定义 -->
+  <select id="pageList" parameterType="Order" resultMap="BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from `order` 
+    <where>
+    	<if test="orderNo!=null and orderNo!='' ">
+    		and order_no like '%${orderNo}%'
+    	</if>
+    	<if test="status!=null">
+    		and status = #{status}
+    	</if>
+    </where>
+  </select>
+  
+  <delete id="deleteAll">
+  	delete from `order`
+  	where id in
+  	<foreach collection="array" item="id" open="(" close=")" separator=",">
+  		#{id}
+  	</foreach>
+  </delete>
 </mapper>
