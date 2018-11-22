@@ -101,7 +101,6 @@ public class SaleChanceController {
 	public ServerResponse selectById(Integer id) {
 		// 根据id查出saleChance表的信息
 		SaleChance saleChance = saleChanceService.selectById(id);
-		System.out.println(saleChance);
 		// 填充order表
 		Order order = new Order();
 		order.setCustomerId(saleChance.getCustomerId()); // 客户id
